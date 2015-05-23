@@ -1,0 +1,14 @@
+version = '0.2.0'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+}
+
+dependencies{
+
+    compile 'com.zaxxer:HikariCP:2.3.7'
+
+}
