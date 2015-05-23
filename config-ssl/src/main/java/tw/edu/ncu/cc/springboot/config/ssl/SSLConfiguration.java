@@ -13,14 +13,14 @@ import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 
 @Configuration
-public class SSLAutoConfigure {
+public class SSLConfiguration {
 
-    private Logger logger = LoggerFactory.getLogger( SSLAutoConfigure.class );
+    private Logger logger = LoggerFactory.getLogger( SSLConfiguration.class );
 
     @Bean
     @ConditionalOnProperty( prefix = "ssl.verification", name = "enabled", havingValue = "false" )
     public SSLConfig sslConfig() {
-        logger.info( "auto configure net ssl" );
+        logger.info( "configure ssl config" );
         logger.debug( "ssl.verification.enabled: false" );
         disableSSLVerification();
         return new SSLConfig( false );
