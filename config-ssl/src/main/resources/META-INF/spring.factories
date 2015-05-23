@@ -1,3 +1,0 @@
-# Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-tw.edu.ncu.cc.springboot.config.ssl.SSLAutoConfigure
