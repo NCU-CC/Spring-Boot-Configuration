@@ -32,12 +32,16 @@ public class HikariCPConfiguration {
     @Value( "${spring.datasource.password}" )
     public String password;
 
+    @Value( "${spring.datasource.driver-class-name}" )
+    public String driverClassName;
+
     @Bean
     public DataSource hikariDataSource() {
 
         logger.info( "configure hikariCP config" );
 
         HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setDriverClassName( driverClassName );
         dataSource.setDataSourceProperties( hikariCPConfig.getHikariDatasource() );
         dataSource.setUsername( username );
         dataSource.setPassword( password );
