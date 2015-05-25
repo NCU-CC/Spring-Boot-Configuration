@@ -4,17 +4,16 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import javax.sql.DataSource;
 
 
+@Profile( "production" )
 @Configuration
 @EnableConfigurationProperties( HikariCPConfig.class )
 public class HikariCPConfiguration {
@@ -24,16 +23,25 @@ public class HikariCPConfiguration {
     @Autowired
     public HikariCPConfig hikariCPConfig;
 
+    @Value( "${spring.datasource.url}" )
+    public String url;
+
+    @Value( "${spring.datasource.username}" )
+    public String username;
+
+    @Value( "${spring.datasource.password}" )
+    public String password;
+
     @Bean
     public DataSource hikariDataSource() {
 
         logger.info( "configure hikariCP config" );
 
         HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setDataSourceProperties( hikariCPConfig.getHikariProperties() );
-        dataSource.setUsername( hikariCPConfig.getUsername() );
-        dataSource.setPassword( hikariCPConfig.getPassword() );
-        dataSource.setJdbcUrl( hikariCPConfig.getUrl() );
+        dataSource.setDataSourceProperties( hikariCPConfig.getHikariDatasource() );
+        dataSource.setUsername( username );
+        dataSource.setPassword( password );
+        dataSource.setJdbcUrl( url );
 
         return dataSource;
     }
