@@ -1,2 +1,2 @@
-# Spring-Boot-Configuration
-tools for web development in spring boot
+# Java-Libs
+tools for web development in java
