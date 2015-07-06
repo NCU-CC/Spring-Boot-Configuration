@@ -10,5 +10,7 @@ buildscript {
 dependencies{
 
     compile 'com.zaxxer:HikariCP:2.3.7'
+    compile 'org.springframework.boot:spring-boot-starter:1.2.3.RELEASE'
+    testCompile 'org.springframework.boot:spring-boot-starter-test:1.2.3.RELEASE'
 
 }
