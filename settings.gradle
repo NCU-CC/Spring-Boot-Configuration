@@ -1,2 +1,3 @@
 include 'config-ssl'
 include 'config-hikaricp'
+include 'lib-httpclient'
